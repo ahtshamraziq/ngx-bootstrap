@@ -67,6 +67,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  @Input() public disableWeekends:boolean;
   // todo: change type during implementation
   @Input() public dateDisabled:any;
   @Input() public initDate:Date;
@@ -309,7 +310,13 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
 
   private isDisabled(date:Date):boolean {
     // todo: implement dateDisabled attribute
-    return ((this.minDate && this.compare(date, this.minDate) < 0) ||
+    let isDateDisabled = false;
+
+    if (this.disableWeekends) {
+      isDateDisabled = (date.getDay() === 6) || (date.getDay() === 0);
+    }
+
+    return (isDateDisabled || (this.minDate && this.compare(date, this.minDate) < 0) ||
     (this.maxDate && this.compare(date, this.maxDate) > 0));
   }
 }

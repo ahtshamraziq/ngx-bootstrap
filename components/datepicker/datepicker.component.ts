@@ -19,6 +19,7 @@ import {YearPickerComponent} from './yearpicker.component';
                       [minMode]="minMode"
                       [maxMode]="maxMode"
                       [showWeeks]="showWeeks"
+                      [disableWeekends]="disableWeekends"
                       [formatDay]="formatDay"
                       [formatMonth]="formatMonth"
                       [formatYear]="formatYear"
@@ -60,6 +61,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() public onlyCurrentMonth:boolean;
   @Input() public shortcutPropagation:boolean;
   @Input() public customClass:Array<{date:Date, mode:string, clazz:string}>;
+  @Input() public disableWeekends:boolean;
 // todo: change type during implementation
   @Input() public dateDisabled:any;
 
